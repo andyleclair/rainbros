@@ -9,7 +9,8 @@ module Rainbros
         exit! unless system(cmd)
       end
     else
-      4.times { system(cmd) }
+      bros = ARGV[0].to_i rescue 4
+      bros.times { exit! unless system(cmd) }
     end
   end
 end
