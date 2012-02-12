@@ -1,21 +1,36 @@
 require "rainbros/version"
 
 module Rainbros
-  module_function
-  def bro_it_out!
-    cmd = 'dicks | lolcat'
-    if ARGV[0] && ARGV[0] == "forever"
-      while true
-        exit! unless system(cmd)
-      end
-    else
-      bros = ARGV.first || 4
-      
-      if (bros = bros.to_i) > 0
-        bros.times { exit! unless system(cmd) }
+  class BroItOut
+    def go
+      bros = ARGV.pop
+
+      if bros == "forever"
+        bros_forever
       else
-        system("echo 'y u no want rainbros?' | lolcat")
+        bros ||= 12
+
+        if (n = bros.to_i) > 0
+          bros n
+        else
+          no_bros
+        end
       end
+    end
+
+    private
+    def bros_forever
+      while true
+        exit! unless system('dicks | lolcat')
+      end
+    end
+
+    def bros n
+      system("dicks #{n} | lolcat")
+    end
+
+    def no_bros
+      system("echo 'y u no want rainbros?' | lolcat")
     end
   end
 end
