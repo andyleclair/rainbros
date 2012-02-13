@@ -12,8 +12,7 @@ module Rainbros
                 :os => rand(256),
                 :speed => 1.0
         }
-        output = capture_stdout {::Lol.cat([prompt], opts)}
-        output = output.string.chomp
+        output = capture_stdout {::Lol.cat([prompt], opts)}.string.chomp
         default = @CONF[:PROMPT][:DEFAULT]
         @CONF[:PROMPT][:RAINBROS] = {
                 :PROMPT_I => "#{default[:PROMPT_I][0..-3]}#{output}",
