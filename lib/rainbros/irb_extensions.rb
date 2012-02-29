@@ -4,6 +4,7 @@ module Rainbros
       alias :old_setup :setup
 
       def setup(ap_path)
+        STDOUT.sync = true
         old_setup(ap_path)
         prompt = "8===D~~ "
         opts = {
@@ -21,9 +22,11 @@ module Rainbros
                 :PROMPT_C => "#{default[:PROMPT_C][0..-2]}#{output}",
                 :RETURN => "#{output}#{default[:RETURN][3..-1]}"
         }
-        puts @CONF[:PROMPT][:RAINBROS]
         @CONF[:PROMPT_MODE] = :RAINBROS
         @CONF[:AUTO_INDENT] = true
+        # disable readline because it causes a wrapping bug.
+        # http://www.ruby-forum.com/topic/213807
+        @CONF[:USE_READLINE] = false
       end
     end
   end

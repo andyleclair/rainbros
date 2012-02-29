@@ -21,7 +21,7 @@ module Lol
     opts.merge!(defaults)
     chars = []
     str.chomp.chars.each_with_index do |c,i|
-      chars << Paint[c, rainbow(opts[:freq], opts[:os]+i/opts[:spread])]
+       chars << Paint[c, rainbow(opts[:freq], opts[:os]+i/opts[:spread])]
     end
     chars.join('')
   end
