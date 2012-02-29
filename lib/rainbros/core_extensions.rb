@@ -1,3 +1,4 @@
+# unused for now
 module Rainbros
   module ::Kernel
     def capture_stdout
