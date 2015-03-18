@@ -19,6 +19,7 @@ module Rainbros
 
     private
     def bros_forever
+      trap('SIGINT') { exit! }
       while true
         exit! unless system('dicks | lolcat')
       end
